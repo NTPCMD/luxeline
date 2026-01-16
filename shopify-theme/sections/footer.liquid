@@ -1,52 +1,78 @@
-<footer class="site-footer">
+<footer class="site-footer" style="background-color: var(--luxeline-muted); padding: 4rem 0 2rem;">
   <div class="luxeline-container">
-    <div class="footer-grid">
+    <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; margin-bottom: 3rem;">
       <div>
-        <div class="header-logo">
+        <div class="header-logo" style="margin-bottom: 1.5rem;">
           {% if settings.logo != blank %}
-            <img src="{{ settings.logo | image_url: width: 220 }}" alt="{{ shop.name }}" loading="lazy">
+            <img src="{{ settings.logo | image_url: width: 150 }}" alt="{{ shop.name }}" loading="lazy" style="max-width: 150px;">
           {% else %}
-            <span>LUXE</span><span>LINÈ</span>
+            <span class="luxury-heading" style="font-size: 1.5rem; color: var(--luxeline-primary);">{{ shop.name }}</span>
           {% endif %}
         </div>
-        <p>{{ section.settings.description }}</p>
-        <div class="header-icons">
-          {% if section.settings.instagram_url != blank %}
-            <a href="{{ section.settings.instagram_url }}" aria-label="Instagram">📸</a>
+        <p style="color: rgba(114, 81, 60, 0.7); margin-bottom: 1.5rem; line-height: 1.6;">{{ section.settings.description }}</p>
+        <div class="social-links" style="display: flex; gap: 1rem;">
+          {% if settings.instagram_url != blank %}
+            <a href="{{ settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram" style="color: var(--luxeline-primary); transition: color 0.2s ease;">
+              {% render 'icon', icon: 'instagram' %}
+            </a>
           {% endif %}
-          {% if section.settings.tiktok_url != blank %}
-            <a href="{{ section.settings.tiktok_url }}" aria-label="TikTok">🎵</a>
+          {% if settings.tiktok_url != blank %}
+            <a href="{{ settings.tiktok_url }}" target="_blank" rel="noopener" aria-label="TikTok" style="color: var(--luxeline-primary); transition: color 0.2s ease;">
+              {% render 'icon', icon: 'tiktok' %}
+            </a>
           {% endif %}
-          {% if section.settings.email != blank %}
-            <a href="mailto:{{ section.settings.email }}" aria-label="Email">✉️</a>
+          {% if settings.facebook_url != blank %}
+            <a href="{{ settings.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook" style="color: var(--luxeline-primary); transition: color 0.2s ease;">
+              {% render 'icon', icon: 'facebook' %}
+            </a>
           {% endif %}
         </div>
       </div>
       {% for block in section.blocks %}
         <div class="footer-links" {{ block.shopify_attributes }}>
-          <h4>{{ block.settings.title }}</h4>
+          <h4 style="font-weight: 600; margin-bottom: 1rem; color: var(--luxeline-primary);">{{ block.settings.title }}</h4>
           {% if block.settings.menu != blank %}
-            <ul>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
               {% for link in linklists[block.settings.menu].links %}
-                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                <li><a href="{{ link.url }}" style="color: rgba(114, 81, 60, 0.7); transition: color 0.2s ease;">{{ link.title }}</a></li>
               {% endfor %}
             </ul>
           {% endif %}
         </div>
       {% endfor %}
     </div>
-    <div class="footer-bottom">
-      <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
-      <div>
+    <div class="footer-bottom" style="display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid var(--luxeline-border); font-size: 0.875rem; color: rgba(114, 81, 60, 0.6); flex-wrap: wrap; gap: 1rem;">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'general.footer.all_rights_reserved' | t }}</span>
+      <div style="display: flex; gap: 1rem;">
         {% if section.settings.legal_menu != blank %}
           {% for link in linklists[section.settings.legal_menu].links %}
-            <a href="{{ link.url }}">{{ link.title }}</a>{% unless forloop.last %} • {% endunless %}
+            <a href="{{ link.url }}" style="color: rgba(114, 81, 60, 0.6); transition: color 0.2s ease;">{{ link.title }}</a>
           {% endfor %}
         {% endif %}
       </div>
     </div>
   </div>
 </footer>
+
+<style>
+.footer-links a:hover,
+.social-links a:hover,
+.footer-bottom a:hover {
+  color: var(--luxeline-accent) !important;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
 
 {% schema %}
 {
@@ -57,22 +83,6 @@
       "id": "description",
       "label": "Brand description",
       "default": "Luxury wigs designed for confidence, comfort, and flawless beauty. Elevate your look with premium quality and natural elegance."
-    },
-    {
-      "type": "url",
-      "id": "instagram_url",
-      "label": "Instagram URL"
-    },
-    {
-      "type": "url",
-      "id": "tiktok_url",
-      "label": "TikTok URL"
-    },
-    {
-      "type": "text",
-      "id": "email",
-      "label": "Contact email",
-      "default": "hello@luxeline.com"
     },
     {
       "type": "link_list",

@@ -1,86 +1,152 @@
-[  
-  {  
-    "name": "General Settings",  
-    "settings": [  
-      {  
-        "type": "header",  
-        "content": "General Settings"  
-      },  
-      {  
-        "type": "text",  
-        "id": "store_name",  
-        "label": "Store Name",  
-        "default": "My Online Store"  
-      },  
-      {  
-        "type": "textarea",  
-        "id": "store_description",  
-        "label": "Store Description",  
-        "default": "Welcome to our store!"  
-      }  
-    ]  
-  },  
-  {  
-    "name": "Colors",  
-    "settings": [  
-      {  
-        "type": "header",  
-        "content": "Color Settings"  
-      },  
-      {  
-        "type": "color",  
-        "id": "primary_color",  
-        "label": "Primary Color",  
-        "default": "#ff0000"  
-      },  
-      {  
-        "type": "color",  
-        "id": "secondary_color",  
-        "label": "Secondary Color",  
-        "default": "#00ff00"  
-      }  
-    ]  
-  },  
-  {  
-    "name": "Typography",  
-    "settings": [  
-      {  
-        "type": "header",  
-        "content": "Typography Settings"  
-      },  
-      {  
-        "type": "font",  
-        "id": "body_font",  
-        "label": "Body Font",  
-        "default": "Arial"  
-      },  
-      {  
-        "type": "font",  
-        "id": "heading_font",  
-        "label": "Heading Font",  
-        "default": "Verdana"  
-      }  
-    ]  
-  },  
-  {  
-    "name": "Social Media",  
-    "settings": [  
-      {  
-        "type": "header",  
-        "content": "Social Media Links"  
-      },  
-      {  
-        "type": "url",  
-        "id": "facebook_link",  
-        "label": "Facebook Link",  
-        "default": "https://facebook.com"  
-      },  
-      {  
-        "type": "url",  
-        "id": "twitter_link",  
-        "label": "Twitter Link",  
-        "default": "https://twitter.com"  
-      }  
-    ]  
-  }  
+[
+  {
+    "name": "theme_info",
+    "theme_name": "LuxeLine",
+    "theme_version": "1.0.0",
+    "theme_author": "LuxeLine",
+    "theme_documentation_url": "https://luxeline.com.au",
+    "theme_support_url": "https://luxeline.com.au/support"
+  },
+  {
+    "name": "Logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo Image"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "label": "Logo Width",
+        "default": 150
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Brand Colors"
+      },
+      {
+        "type": "color",
+        "id": "primary_color",
+        "label": "Primary Brown",
+        "default": "#72513C"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Pink Accent",
+        "default": "#E8B4BC"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Cream",
+        "default": "#FDFBF6"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#72513C"
+      },
+      {
+        "type": "color",
+        "id": "heading_color",
+        "label": "Heading Color",
+        "default": "#121212"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Typography Settings"
+      },
+      {
+        "type": "range",
+        "id": "base_font_size",
+        "min": 14,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "label": "Base Font Size",
+        "default": 16
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social Media Links"
+      },
+      {
+        "type": "url",
+        "id": "instagram_url",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "tiktok_url",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "url",
+        "id": "facebook_url",
+        "label": "Facebook URL"
+      }
+    ]
+  },
+  {
+    "name": "Announcement Bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_enabled",
+        "label": "Enable Announcement Bar",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement Text",
+        "default": "Free shipping on orders over $200"
+      },
+      {
+        "type": "color",
+        "id": "announcement_bg_color",
+        "label": "Background Color",
+        "default": "#72513C"
+      },
+      {
+        "type": "color",
+        "id": "announcement_text_color",
+        "label": "Text Color",
+        "default": "#FFFFFF"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon Image",
+        "info": "32x32px .png recommended"
+      }
+    ]
+  }
 ]

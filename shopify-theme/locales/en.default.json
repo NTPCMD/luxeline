@@ -5,7 +5,151 @@
     },
     "pagination": {
       "page": "Page {{ page_number }}"
+    },
+    "breadcrumbs": {
+      "home": "Home",
+      "shop": "Shop"
+    },
+    "search": {
+      "search": "Search"
+    },
+    "newsletter": {
+      "email_placeholder": "Enter your email",
+      "submit": "Subscribe",
+      "success": "Thanks for subscribing!"
+    },
+    "footer": {
+      "all_rights_reserved": "All rights reserved"
+    },
+    "password": {
+      "enter_store": "Enter using password"
+    },
+    "countdown": {
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds",
+      "loading": "Loading countdown..."
     }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "from_price": "From {{ price }}",
+      "quantity": "Quantity",
+      "description": "Description",
+      "shipping": "Shipping & Returns",
+      "related_products": "You May Also Like",
+      "free_shipping": "Free Shipping",
+      "easy_returns": "Easy Returns",
+      "quality_guarantee": "Quality Guarantee"
+    },
+    "badge": {
+      "sale": "Sale",
+      "new": "New",
+      "best_seller": "Best Seller",
+      "sold_out": "Sold Out"
+    },
+    "quick_add": "Quick Add",
+    "price": {
+      "save": "Save"
+    }
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": {
+      "title": "Your cart is empty",
+      "description": "Start shopping to add items to your cart",
+      "button": "Start Shopping"
+    },
+    "subtotal": "Subtotal",
+    "taxes_shipping": "Taxes and shipping calculated at checkout",
+    "checkout": "Checkout",
+    "continue_shopping": "Continue Shopping",
+    "remove": "Remove",
+    "summary": "Order Summary",
+    "free_shipping_progress": "Add {{ remaining }} more for free shipping",
+    "free_shipping_eligible": "Eligible for free shipping!",
+    "secure_checkout": "Secure Checkout",
+    "free_shipping_over": "Free shipping on orders over $200"
+  },
+  "collections": {
+    "general": {
+      "items": "Styles",
+      "shop_now": "Shop Now"
+    },
+    "toolbar": {
+      "filters": "Filters",
+      "products": "Products"
+    },
+    "sorting": {
+      "featured": "Featured",
+      "best_selling": "Best Selling",
+      "az": "Alphabetically, A-Z",
+      "za": "Alphabetically, Z-A",
+      "price_low": "Price, Low to High",
+      "price_high": "Price, High to Low",
+      "date_new": "Date, New to Old"
+    },
+    "filters": {
+      "title": "Filters",
+      "price": "Price",
+      "category": "Category",
+      "reset": "Reset Filters"
+    },
+    "empty": {
+      "title": "No products found",
+      "description": "Try adjusting your filters or search terms",
+      "button": "View All Products"
+    }
+  },
+  "customer": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "forgot_password": "Forgot password?",
+      "sign_in": "Sign In",
+      "new_customer": "New customer?",
+      "create_account": "Create Account",
+      "error": "Please check your email and password"
+    },
+    "register": {
+      "title": "Create Account",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create Account",
+      "have_account": "Already have an account?",
+      "sign_in": "Sign In",
+      "error": "There was an error creating your account"
+    },
+    "account": {
+      "title": "My Account",
+      "orders": "Orders",
+      "addresses": "Addresses",
+      "sign_out": "Sign Out"
+    },
+    "orders": {
+      "title": "Order History",
+      "order_number": "Order {{ number }}",
+      "total": "Total",
+      "none": "You haven't placed any orders yet",
+      "start_shopping": "Start Shopping"
+    }
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search for products...",
+    "results_count": "{{ count }} results for \"{{ terms }}\"",
+    "no_results": {
+      "title": "No results for \"{{ terms }}\"",
+      "description": "Try searching for something else",
+      "button": "View All Products"
+    },
+    "initial_message": "Enter a search term to find products"
   },
   "contact": {
     "form": {

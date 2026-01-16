@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "lookbook-gallery",
+      "settings": {
+        "heading": "LuxeLine Lookbook",
+        "subheading": "Get inspired by our stunning collection and see how our wigs transform beauty"
+      }
+    }
+  },
+  "order": ["main"]
+}
