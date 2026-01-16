@@ -1,0 +1,84 @@
+<section class="section-block light">
+  <div class="luxeline-container">
+    <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; margin-bottom:32px;">
+      <div>
+        <h2 class="luxeline-heading" style="font-size: clamp(2rem, 4vw, 3rem);">{{ section.settings.heading }}</h2>
+        <p>{{ section.settings.subheading }}</p>
+      </div>
+      {% if section.settings.cta_label != blank %}
+        <a class="luxeline-button outline" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a>
+      {% endif %}
+    </div>
+    <div class="best-sellers-grid">
+      {% for block in section.blocks %}
+        <div class="product-card" {{ block.shopify_attributes }}>
+          <div class="product-card-image">
+            <div style="position:absolute; top:16px; left:16px;">
+              <span class="badge">{{ block.settings.badge }}</span>
+            </div>
+          </div>
+          <h3 style="margin:0 0 8px;">{{ block.settings.title }}</h3>
+          <p style="margin:0; font-weight:600;">{{ block.settings.price }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Best sellers",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Our most loved styles"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "View All"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Luxury Straight Wig"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "$299"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge text",
+          "default": "Best Seller"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8
+}
+{% endschema %}

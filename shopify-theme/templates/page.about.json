@@ -1,0 +1,75 @@
+{
+  "sections": {
+    "hero": {
+      "type": "page-hero",
+      "settings": {
+        "heading": "Our Story",
+        "subheading": "Redefining beauty through luxury, quality, and confidence"
+      }
+    },
+    "mission": {
+      "type": "rich-text",
+      "settings": {
+        "heading": "Designed for Confidence",
+        "text": "<p>At LuxeLine, we believe every woman deserves to feel beautiful, confident, and empowered. Our mission is to provide premium quality wigs that look natural, feel comfortable, and elevate your everyday style.</p><p>We're more than just a wig brand—we're a community of women supporting women, celebrating individuality, and embracing beauty in all its forms.</p>"
+      }
+    },
+    "values": {
+      "type": "values-grid",
+      "blocks": {
+        "value-1": {
+          "type": "value",
+          "settings": {
+            "icon": "✨",
+            "title": "Premium Quality",
+            "text": "Only the finest 100% human hair, ethically sourced and carefully selected for natural beauty."
+          }
+        },
+        "value-2": {
+          "type": "value",
+          "settings": {
+            "icon": "💖",
+            "title": "Customer Love",
+            "text": "Your satisfaction is our priority. We provide exceptional service and support every step of the way."
+          }
+        },
+        "value-3": {
+          "type": "value",
+          "settings": {
+            "icon": "🏆",
+            "title": "Craftsmanship",
+            "text": "Each wig is meticulously crafted by skilled artisans with attention to every detail."
+          }
+        },
+        "value-4": {
+          "type": "value",
+          "settings": {
+            "icon": "👥",
+            "title": "Community",
+            "text": "Building a supportive community where women feel confident, beautiful, and empowered."
+          }
+        }
+      },
+      "block_order": ["value-1", "value-2", "value-3", "value-4"],
+      "settings": {
+        "heading": "What We Stand For"
+      }
+    },
+    "quality": {
+      "type": "image-with-text",
+      "settings": {
+        "heading": "Our Quality Promise",
+        "text": "<p><strong>100% Premium Human Hair</strong><br>Ethically sourced, virgin hair that can be styled, dyed, and treated like your own.</p><p><strong>Natural Hairline Technology</strong><br>HD lace and pre-plucked hairlines for an undetectable, natural appearance.</p><p><strong>Glueless Comfort Design</strong><br>Beginner-friendly installation with secure fit and all-day comfort.</p><p><strong>Long-Lasting Durability</strong><br>With proper care, your LuxeLine wig will maintain its beauty for years.</p>"
+      }
+    },
+    "cta": {
+      "type": "cta",
+      "settings": {
+        "heading": "Join the LuxeLine Family",
+        "subheading": "Experience the difference that premium quality and thoughtful design can make",
+        "button_label": "Shop Now"
+      }
+    }
+  },
+  "order": ["hero", "mission", "values", "quality", "cta"]
+}
