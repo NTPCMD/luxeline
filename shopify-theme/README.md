@@ -167,7 +167,7 @@ If you want to use the theme as a "coming soon" page before launch:
 4. Set a password for yourself and visitors
 5. Go to **Themes** → Select your theme → **Customize**
 6. Find the **"Password Page"** section
-7. Set **"Launch Date"** in ISO format: `2026-06-01T00:00:00`
+7. Set **"Launch Date"** in ISO format: `YYYY-MM-DDTHH:MM:SS` (e.g., `2024-12-15T09:00:00`)
 8. Countdown timer will display automatically
 9. Customize email capture form text
 
@@ -185,11 +185,17 @@ If you want to use the theme as a "coming soon" page before launch:
 - [ ] Check footer displays all links
 
 **To Publish**:
+
+⚠️ **WARNING**: Publishing makes the theme live to ALL customers immediately. Ensure thorough testing first!
+
 1. Go to **Online Store** → **Themes**
 2. Find your customized theme
 3. Click **"Actions"** → **"Publish"**
-4. Confirm publication
-5. Your theme is now live! 🎉
+4. **Review the warning**: Shopify will show a confirmation dialog
+5. Click **"Publish"** to confirm
+6. Your theme is now live! 🎉
+
+💡 **Tip**: Consider publishing during low-traffic hours to minimize impact of any unforeseen issues.
 
 ## Available Templates
 
