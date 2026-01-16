@@ -98,7 +98,11 @@
 }
 
 [data-cart-count] {
-  display: {{ cart.item_count }}px > 0 ? 'flex' : 'none';
+  display: flex;
+}
+
+[data-cart-count]:empty {
+  display: none;
 }
 </style>
 

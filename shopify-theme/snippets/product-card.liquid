@@ -65,7 +65,12 @@
           {% assign color_option = product.options_with_values | where: "name", "Color" | first %}
           {% if color_option %}
             {% for value in color_option.values limit: 5 %}
-              <span class="product-card__color-swatch" style="background-color: {{ value | handle }}"></span>
+              {% assign color_class = value | handle %}
+              <span 
+                class="product-card__color-swatch" 
+                title="{{ value }}"
+                style="{% if color_class == 'black' or color_class == 'natural-black' %}background-color: #1a1a1a;{% elsif color_class == 'dark-brown' %}background-color: #4a3228;{% elsif color_class == 'light-brown' or color_class == 'brown' %}background-color: #8b5a3c;{% elsif color_class == 'blonde' %}background-color: #c4a57b;{% elsif color_class == 'red' %}background-color: #8b3a3a;{% elsif color_class == 'burgundy' %}background-color: #6b2737;{% elsif color_class == 'auburn' %}background-color: #914b3b;{% else %}background-color: #9c8579;{% endif %}"
+              ></span>
             {% endfor %}
             {% if color_option.values.size > 5 %}
               <span class="product-card__more-colors">+{{ color_option.values.size | minus: 5 }}</span>
