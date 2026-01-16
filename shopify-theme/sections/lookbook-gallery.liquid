@@ -1,0 +1,160 @@
+{% comment %}
+  Lookbook Gallery Section
+{% endcomment %}
+
+<section class="lookbook-gallery luxeline-section" style="padding: 5rem 0; background-color: {{ section.settings.background_color }};">
+  <div class="luxeline-container">
+    {% if section.settings.heading != blank %}
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <h2 class="luxury-heading" style="font-size: 3rem; margin-bottom: 1rem; color: var(--luxeline-black);">
+          {{ section.settings.heading }}
+        </h2>
+        {% if section.settings.subheading != blank %}
+          <p style="font-size: 1.125rem; color: var(--luxeline-primary); max-width: 600px; margin: 0 auto;">
+            {{ section.settings.subheading }}
+          </p>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    <div class="lookbook-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+      {% for block in section.blocks %}
+        <div class="lookbook-item" style="position: relative; border-radius: 1rem; overflow: hidden; height: {{ block.settings.height }}px;">
+          {% if block.settings.image %}
+            <img 
+              src="{{ block.settings.image | image_url: width: 600 }}" 
+              alt="{{ block.settings.title | escape }}"
+              loading="lazy"
+              style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;"
+            >
+          {% else %}
+            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--luxeline-muted) 0%, #e8ddd5 100%);"></div>
+          {% endif %}
+          
+          {% if block.settings.title != blank or block.settings.link != blank %}
+            <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(18,18,18,0.7) 0%, transparent 50%); display: flex; align-items: flex-end; padding: 2rem;">
+              <div>
+                {% if block.settings.title != blank %}
+                  <h3 class="luxury-heading" style="font-size: 1.5rem; color: white; margin-bottom: 0.5rem;">
+                    {{ block.settings.title }}
+                  </h3>
+                {% endif %}
+                {% if block.settings.description != blank %}
+                  <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem;">
+                    {{ block.settings.description }}
+                  </p>
+                {% endif %}
+                {% if block.settings.link != blank %}
+                  <a href="{{ block.settings.link }}" class="luxeline-button luxeline-button--outline" style="background-color: white; color: var(--luxeline-primary); border-color: white;">
+                    {{ block.settings.link_text | default: 'Shop Now' }}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+.lookbook-item:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .lookbook-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Lookbook Gallery",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#FDFBF6"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Lookbook"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Discover our latest styles and inspiration"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "height",
+          "min": 300,
+          "max": 700,
+          "step": 50,
+          "unit": "px",
+          "label": "Image Height",
+          "default": 500
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text",
+          "default": "Shop Now"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lookbook Gallery",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,71 @@
+{% comment %}
+  Customer Login Section
+{% endcomment %}
+
+<div class="customer-login" style="padding: 4rem 0;">
+  <div class="luxeline-container" style="max-width: 500px;">
+    <h1 class="luxury-heading" style="font-size: 3rem; margin-bottom: 2rem; color: var(--luxeline-black); text-align: center;">
+      {{ 'customer.login.title' | t }}
+    </h1>
+    
+    {% form 'customer_login' %}
+      {% if form.errors %}
+        <div style="padding: 1rem; background-color: rgba(212, 24, 61, 0.1); border-radius: var(--luxeline-radius); margin-bottom: 1.5rem;">
+          <p style="color: #d4183d; font-weight: 600; margin-bottom: 0.5rem;">{{ 'customer.login.error' | t }}</p>
+          {% for error in form.errors %}
+            <p style="color: #d4183d; font-size: 0.875rem;">{{ error | capitalize }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label for="CustomerEmail" class="luxeline-label">{{ 'customer.login.email' | t }}</label>
+        <input 
+          type="email" 
+          name="customer[email]" 
+          id="CustomerEmail"
+          autocomplete="email"
+          class="luxeline-input"
+          {% if form.email %}value="{{ form.email }}"{% endif %}
+        >
+      </div>
+      
+      <div style="margin-bottom: 1rem;">
+        <label for="CustomerPassword" class="luxeline-label">{{ 'customer.login.password' | t }}</label>
+        <input 
+          type="password" 
+          name="customer[password]" 
+          id="CustomerPassword"
+          autocomplete="current-password"
+          class="luxeline-input"
+        >
+      </div>
+      
+      <div style="text-align: right; margin-bottom: 1.5rem;">
+        <a href="/account/password" style="font-size: 0.875rem; color: var(--luxeline-primary); text-decoration: underline;">
+          {{ 'customer.login.forgot_password' | t }}
+        </a>
+      </div>
+      
+      <button type="submit" class="luxeline-button luxeline-button--primary luxeline-button--full luxeline-button--large">
+        {{ 'customer.login.sign_in' | t }}
+      </button>
+    {% endform %}
+    
+    <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--luxeline-border);">
+      <p style="color: rgba(114, 81, 60, 0.7); margin-bottom: 1rem;">
+        {{ 'customer.login.new_customer' | t }}
+      </p>
+      <a href="/account/register" class="luxeline-button luxeline-button--outline luxeline-button--full">
+        {{ 'customer.login.create_account' | t }}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Customer Login",
+  "settings": []
+}
+{% endschema %}

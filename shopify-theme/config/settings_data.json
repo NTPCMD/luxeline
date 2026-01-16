@@ -1,0 +1,26 @@
+{
+  "current": {
+    "primary_color": "#72513C",
+    "accent_color": "#E8B4BC",
+    "background_color": "#FDFBF6",
+    "text_color": "#72513C",
+    "heading_color": "#121212",
+    "base_font_size": 16,
+    "announcement_bar_enabled": true,
+    "announcement_text": "Free shipping on orders over $200 🚚",
+    "announcement_bg_color": "#72513C",
+    "announcement_text_color": "#FFFFFF",
+    "instagram_url": "",
+    "tiktok_url": "",
+    "facebook_url": "",
+    "logo_width": 150,
+    "sections": {
+      "header": {
+        "type": "header"
+      },
+      "footer": {
+        "type": "footer"
+      }
+    }
+  }
+}

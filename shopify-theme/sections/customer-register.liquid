@@ -1,0 +1,89 @@
+{% comment %}
+  Customer Register Section
+{% endcomment %}
+
+<div class="customer-register" style="padding: 4rem 0;">
+  <div class="luxeline-container" style="max-width: 500px;">
+    <h1 class="luxury-heading" style="font-size: 3rem; margin-bottom: 2rem; color: var(--luxeline-black); text-align: center;">
+      {{ 'customer.register.title' | t }}
+    </h1>
+    
+    {% form 'create_customer' %}
+      {% if form.errors %}
+        <div style="padding: 1rem; background-color: rgba(212, 24, 61, 0.1); border-radius: var(--luxeline-radius); margin-bottom: 1.5rem;">
+          <p style="color: #d4183d; font-weight: 600; margin-bottom: 0.5rem;">{{ 'customer.register.error' | t }}</p>
+          {% for error in form.errors %}
+            <p style="color: #d4183d; font-size: 0.875rem;">{{ error | capitalize }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label for="RegisterFirstName" class="luxeline-label">{{ 'customer.register.first_name' | t }}</label>
+        <input 
+          type="text" 
+          name="customer[first_name]" 
+          id="RegisterFirstName"
+          autocomplete="given-name"
+          class="luxeline-input"
+          {% if form.first_name %}value="{{ form.first_name }}"{% endif %}
+        >
+      </div>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label for="RegisterLastName" class="luxeline-label">{{ 'customer.register.last_name' | t }}</label>
+        <input 
+          type="text" 
+          name="customer[last_name]" 
+          id="RegisterLastName"
+          autocomplete="family-name"
+          class="luxeline-input"
+          {% if form.last_name %}value="{{ form.last_name }}"{% endif %}
+        >
+      </div>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label for="RegisterEmail" class="luxeline-label">{{ 'customer.register.email' | t }}</label>
+        <input 
+          type="email" 
+          name="customer[email]" 
+          id="RegisterEmail"
+          autocomplete="email"
+          class="luxeline-input"
+          {% if form.email %}value="{{ form.email }}"{% endif %}
+        >
+      </div>
+      
+      <div style="margin-bottom: 1.5rem;">
+        <label for="RegisterPassword" class="luxeline-label">{{ 'customer.register.password' | t }}</label>
+        <input 
+          type="password" 
+          name="customer[password]" 
+          id="RegisterPassword"
+          autocomplete="new-password"
+          class="luxeline-input"
+        >
+      </div>
+      
+      <button type="submit" class="luxeline-button luxeline-button--primary luxeline-button--full luxeline-button--large">
+        {{ 'customer.register.submit' | t }}
+      </button>
+    {% endform %}
+    
+    <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--luxeline-border);">
+      <p style="color: rgba(114, 81, 60, 0.7); margin-bottom: 1rem;">
+        {{ 'customer.register.have_account' | t }}
+      </p>
+      <a href="/account/login" class="luxeline-button luxeline-button--outline luxeline-button--full">
+        {{ 'customer.register.sign_in' | t }}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Customer Register",
+  "settings": []
+}
+{% endschema %}

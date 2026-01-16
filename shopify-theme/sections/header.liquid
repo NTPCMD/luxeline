@@ -1,26 +1,110 @@
-<header class="site-header">
-  <div class="luxeline-container header-inner">
-    <a href="{{ routes.root_url }}" class="header-logo">
+<header class="site-header" data-header>
+  <div class="luxeline-container header-inner" style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem;">
+    <button type="button" class="mobile-menu-toggle md:hidden" data-mobile-menu-toggle style="background: none; border: none; color: var(--luxeline-primary); cursor: pointer; padding: 0.5rem;">
+      {% render 'icon', icon: 'menu' %}
+    </button>
+    
+    <a href="{{ routes.root_url }}" class="header-logo" style="display: flex; align-items: center;">
       {% if settings.logo != blank %}
-        <img src="{{ settings.logo | image_url: width: 240 }}" alt="{{ shop.name }}" loading="lazy">
+        <img src="{{ settings.logo | image_url: width: settings.logo_width }}" alt="{{ shop.name }}" loading="lazy" style="max-width: {{ settings.logo_width }}px; height: auto;">
       {% else %}
-        <span>LUXE</span><span>LINÈ</span>
+        <span class="luxury-heading" style="font-size: 1.5rem; color: var(--luxeline-primary);">{{ shop.name }}</span>
       {% endif %}
     </a>
+    
     {% if section.settings.menu != blank %}
-      <nav class="header-nav">
+      <nav class="header-nav" style="display: none;">
         {% for link in linklists[section.settings.menu].links %}
-          <a href="{{ link.url }}">{{ link.title }}</a>
+          <a href="{{ link.url }}" style="color: var(--luxeline-primary); font-weight: 500; transition: color 0.2s ease;">{{ link.title }}</a>
         {% endfor %}
       </nav>
     {% endif %}
-    <div class="header-icons">
-      <a href="{{ routes.search_url }}" aria-label="Search">🔍</a>
-      <a href="{{ routes.account_url }}" aria-label="Account">👤</a>
-      <a href="{{ routes.cart_url }}" aria-label="Cart">🛍️</a>
+    
+    <div class="header-icons" style="display: flex; align-items: center; gap: 1rem;">
+      <button type="button" data-search-toggle style="background: none; border: none; color: var(--luxeline-primary); cursor: pointer; padding: 0.5rem;">
+        {% render 'icon', icon: 'search' %}
+      </button>
+      <a href="{{ routes.account_url }}" aria-label="Account" style="color: var(--luxeline-primary); padding: 0.5rem;">
+        {% render 'icon', icon: 'account' %}
+      </a>
+      <a href="{{ routes.cart_url }}" aria-label="Cart" style="position: relative; color: var(--luxeline-primary); padding: 0.5rem;">
+        {% render 'icon', icon: 'cart' %}
+        <span data-cart-count style="position: absolute; top: 0; right: 0; background-color: var(--luxeline-accent); color: var(--luxeline-black); font-size: 0.75rem; font-weight: 600; min-width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding: 0 4px;">{{ cart.item_count }}</span>
+      </a>
     </div>
   </div>
+  
+  {%- comment -%} Mobile Menu {%- endcomment -%}
+  <div class="mobile-menu" data-mobile-menu style="position: fixed; top: 0; left: 0; bottom: 0; width: 300px; background-color: white; transform: translateX(-100%); transition: transform 0.3s ease; z-index: 1000; padding: 2rem; overflow-y: auto;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <span class="luxury-heading" style="font-size: 1.25rem; color: var(--luxeline-primary);">Menu</span>
+      <button type="button" data-mobile-menu-close style="background: none; border: none; color: var(--luxeline-primary); cursor: pointer;">
+        {% render 'icon', icon: 'close' %}
+      </button>
+    </div>
+    
+    {% if section.settings.menu != blank %}
+      <nav style="display: flex; flex-direction: column; gap: 1rem;">
+        {% for link in linklists[section.settings.menu].links %}
+          <a href="{{ link.url }}" style="color: var(--luxeline-primary); font-weight: 500; padding: 0.75rem 0; border-bottom: 1px solid var(--luxeline-border);">{{ link.title }}</a>
+        {% endfor %}
+      </nav>
+    {% endif %}
+  </div>
+  
+  {%- comment -%} Mobile Menu Overlay {%- endcomment -%}
+  <div class="mobile-menu-overlay" style="position: fixed; inset: 0; background-color: rgba(0,0,0,0.5); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 999;"></div>
 </header>
+
+<style>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--luxeline-bg);
+  border-bottom: 1px solid var(--luxeline-border);
+  transition: box-shadow 0.3s ease;
+}
+
+.site-header.scrolled {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header-nav {
+  gap: 2rem;
+}
+
+.header-nav a:hover {
+  color: var(--luxeline-accent);
+}
+
+.mobile-menu.active {
+  transform: translateX(0);
+}
+
+.mobile-menu.active ~ .mobile-menu-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (min-width: 769px) {
+  .header-nav {
+    display: flex !important;
+  }
+  
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+}
+
+[data-cart-count] {
+  display: flex;
+}
+
+[data-cart-count]:empty {
+  display: none;
+}
+</style>
 
 {% schema %}
 {
@@ -29,7 +113,8 @@
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Navigation menu"
+      "label": "Navigation menu",
+      "default": "main-menu"
     }
   ]
 }
