@@ -1,0 +1,103 @@
+{% comment %}
+  Main Search Section
+{% endcomment %}
+
+<div class="search-page" style="padding: 3rem 0;">
+  <div class="luxeline-container">
+    <h1 class="luxury-heading" style="font-size: 3rem; margin-bottom: 2rem; color: var(--luxeline-black); text-align: center;">
+      {{ 'search.title' | t }}
+    </h1>
+    
+    {%- comment -%} Search Form {%- endcomment -%}
+    <form action="/search" method="get" style="max-width: 600px; margin: 0 auto 3rem;">
+      <div style="position: relative;">
+        <input 
+          type="search" 
+          name="q" 
+          value="{{ search.terms | escape }}"
+          placeholder="{{ 'search.placeholder' | t }}"
+          class="luxeline-input"
+          style="padding-right: 3rem;"
+          autofocus
+        >
+        <button 
+          type="submit" 
+          style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--luxeline-primary); cursor: pointer; display: flex; align-items: center; justify-content: center;"
+        >
+          {% render 'icon', icon: 'search' %}
+        </button>
+      </div>
+    </form>
+    
+    {% if search.performed %}
+      {% if search.results_count > 0 %}
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <p style="color: rgba(114, 81, 60, 0.7);">
+            {{ 'search.results_count' | t: count: search.results_count, terms: search.terms }}
+          </p>
+        </div>
+        
+        <div class="luxeline-grid luxeline-grid--4">
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              {% render 'product-card', product: item %}
+            {% endif %}
+          {% endfor %}
+        </div>
+        
+        {% if paginate.pages > 1 %}
+          <div style="display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-top: 3rem;">
+            {% if paginate.previous %}
+              <a href="{{ paginate.previous.url }}" class="luxeline-button luxeline-button--outline">
+                {% render 'icon', icon: 'chevron-left' %}
+              </a>
+            {% endif %}
+            
+            {% for part in paginate.parts %}
+              {% if part.is_link %}
+                <a href="{{ part.url }}" class="luxeline-button luxeline-button--outline" style="min-width: 44px;">
+                  {{ part.title }}
+                </a>
+              {% else %}
+                <span class="luxeline-button luxeline-button--primary" style="min-width: 44px;">
+                  {{ part.title }}
+                </span>
+              {% endif %}
+            {% endfor %}
+            
+            {% if paginate.next %}
+              <a href="{{ paginate.next.url }}" class="luxeline-button luxeline-button--outline">
+                {% render 'icon', icon: 'chevron-right' %}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% else %}
+        <div style="text-align: center; padding: 4rem 2rem;">
+          <h2 class="luxury-heading" style="font-size: 2rem; margin-bottom: 1rem; color: var(--luxeline-black);">
+            {{ 'search.no_results.title' | t: terms: search.terms }}
+          </h2>
+          <p style="color: rgba(114, 81, 60, 0.7); margin-bottom: 2rem;">
+            {{ 'search.no_results.description' | t }}
+          </p>
+          <a href="/collections/all" class="luxeline-button luxeline-button--primary">
+            {{ 'search.no_results.button' | t }}
+          </a>
+        </div>
+      {% endif %}
+    {% else %}
+      <div style="text-align: center; padding: 4rem 2rem;">
+        <p style="color: rgba(114, 81, 60, 0.7);">
+          {{ 'search.initial_message' | t }}
+        </p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Search",
+  "settings": []
+}
+{% endschema %}

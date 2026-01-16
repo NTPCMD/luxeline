@@ -1,0 +1,291 @@
+{% comment %}
+  Main Product Section
+{% endcomment %}
+
+<div class="product-page" style="padding-top: 2rem;" data-product-form>
+  <div class="luxeline-container">
+    {%- comment -%} Breadcrumbs {%- endcomment -%}
+    <nav class="breadcrumb" style="margin-bottom: 2rem;">
+      <a href="/" style="color: rgba(114, 81, 60, 0.6);">{{ 'general.breadcrumbs.home' | t }}</a>
+      <span style="margin: 0 0.5rem; color: rgba(114, 81, 60, 0.6);">/</span>
+      <a href="/collections/all" style="color: rgba(114, 81, 60, 0.6);">{{ 'general.breadcrumbs.shop' | t }}</a>
+      <span style="margin: 0 0.5rem; color: rgba(114, 81, 60, 0.6);">/</span>
+      <span style="color: var(--luxeline-primary);">{{ product.title }}</span>
+    </nav>
+    
+    <div class="product-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 4rem;">
+      {%- comment -%} Image Gallery {%- endcomment -%}
+      <div class="product-gallery">
+        <div class="product-gallery__main" style="position: relative; overflow: hidden; border-radius: 1rem; background-color: var(--luxeline-muted); height: 600px; margin-bottom: 1rem;">
+          {% if product.featured_image %}
+            <img 
+              src="{{ product.featured_image | image_url: width: 800 }}" 
+              alt="{{ product.featured_image.alt | escape }}"
+              data-main-image
+              style="width: 100%; height: 100%; object-fit: cover;"
+            >
+          {% endif %}
+        </div>
+        
+        {% if product.media.size > 1 %}
+          <div class="product-gallery__thumbnails" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+            {% for media in product.media limit: 4 %}
+              <button 
+                type="button"
+                class="product-gallery__thumbnail {% if forloop.first %}active{% endif %}"
+                data-thumbnail
+                data-image="{{ media | image_url: width: 800 }}"
+                data-alt="{{ media.alt | escape }}"
+                style="border-radius: 0.5rem; overflow: hidden; height: 100px; border: 2px solid {% if forloop.first %}var(--luxeline-primary){% else %}transparent{% endif %}; cursor: pointer; transition: border-color 0.2s ease;"
+              >
+                <img src="{{ media | image_url: width: 200 }}" alt="{{ media.alt | escape }}" style="width: 100%; height: 100%; object-fit: cover;">
+              </button>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      
+      {%- comment -%} Product Info {%- endcomment -%}
+      <div class="product-info">
+        {% if product.tags contains 'best-seller' or product.compare_at_price > product.price %}
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+            {% if product.tags contains 'best-seller' %}
+              <span class="luxeline-badge">{{ 'products.badge.best_seller' | t }}</span>
+            {% endif %}
+            {% if product.compare_at_price > product.price %}
+              <span class="luxeline-badge luxeline-badge--primary">{{ 'products.badge.sale' | t }}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+        
+        <h1 class="luxury-heading" style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--luxeline-black);">
+          {{ product.title }}
+        </h1>
+        
+        <div class="product-price" style="margin-bottom: 2rem;">
+          <span class="price" data-product-price style="font-size: 2.5rem; font-weight: 600; color: var(--luxeline-primary);">
+            {{ product.price | money }}
+          </span>
+          {% if product.compare_at_price > product.price %}
+            <span class="price price--compare" data-product-compare-price style="font-size: 1.5rem; color: rgba(114, 81, 60, 0.4); text-decoration: line-through; margin-left: 1rem;">
+              {{ product.compare_at_price | money }}
+            </span>
+          {% endif %}
+        </div>
+        
+        {% if product.description != blank %}
+          <div class="product-description" style="color: rgba(114, 81, 60, 0.7); margin-bottom: 2rem; line-height: 1.6;">
+            {{ product.description | truncate: 250 }}
+          </div>
+        {% endif %}
+        
+        {% form 'product', product %}
+          <select name="id" style="display: none;">
+            {% for variant in product.variants %}
+              <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
+                {{ variant.title }} - {{ variant.price | money }}
+              </option>
+            {% endfor %}
+          </select>
+          
+          {%- comment -%} Variant Selectors {%- endcomment -%}
+          {% unless product.has_only_default_variant %}
+            {% for option in product.options_with_values %}
+              <div class="product-option" style="margin-bottom: 1.5rem;">
+                <label class="luxeline-label">{{ option.name }}</label>
+                
+                {% if option.name == 'Color' %}
+                  <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                    {% for value in option.values %}
+                      <button
+                        type="button"
+                        class="color-swatch {% if forloop.first %}active{% endif %}"
+                        data-color-swatch
+                        data-value="{{ value | escape }}"
+                        style="width: 48px; height: 48px; border-radius: 50%; border: 2px solid {% if forloop.first %}var(--luxeline-primary){% else %}rgba(114, 81, 60, 0.2){% endif %}; background-color: {{ value | handle }}; cursor: pointer; transition: all 0.2s ease;"
+                        aria-label="{{ value }}"
+                      ></button>
+                    {% endfor %}
+                  </div>
+                  <select data-variant-input="Color" style="display: none;">
+                    {% for value in option.values %}
+                      <option value="{{ value | escape }}" {% if forloop.first %}selected{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                {% else %}
+                  <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    {% for value in option.values %}
+                      <button
+                        type="button"
+                        class="option-button {% if forloop.first %}active{% endif %}"
+                        onclick="this.parentElement.querySelector('select').value='{{ value | escape }}'; this.parentElement.querySelectorAll('.option-button').forEach(b => b.classList.remove('active')); this.classList.add('active');"
+                        style="padding: 0.5rem 1rem; border-radius: 0.5rem; border: 2px solid {% if forloop.first %}var(--luxeline-primary){% else %}rgba(114, 81, 60, 0.3){% endif %}; background: {% if forloop.first %}var(--luxeline-primary){% else %}transparent{% endif %}; color: {% if forloop.first %}white{% else %}var(--luxeline-primary){% endif %}; cursor: pointer; transition: all 0.2s ease; font-weight: 600;"
+                      >
+                        {{ value }}
+                      </button>
+                    {% endfor %}
+                  </div>
+                  <select data-variant-input="{{ option.name }}" style="display: none;">
+                    {% for value in option.values %}
+                      <option value="{{ value | escape }}" {% if forloop.first %}selected{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                {% endif %}
+              </div>
+            {% endfor %}
+          {% endunless %}
+          
+          {%- comment -%} Quantity {%- endcomment -%}
+          <div class="product-quantity" style="margin-bottom: 2rem;" data-quantity-wrapper>
+            <label class="luxeline-label">{{ 'products.product.quantity' | t }}</label>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <button type="button" data-quantity-decrease style="width: 40px; height: 40px; border-radius: 0.5rem; border: 2px solid rgba(114, 81, 60, 0.3); background: white; color: var(--luxeline-primary); cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                {% render 'icon', icon: 'minus' %}
+              </button>
+              <input type="number" name="quantity" value="1" min="1" data-quantity-input style="width: 60px; text-align: center; font-size: 1.125rem; font-weight: 600; border: none; color: var(--luxeline-primary);">
+              <button type="button" data-quantity-increase style="width: 40px; height: 40px; border-radius: 0.5rem; border: 2px solid rgba(114, 81, 60, 0.3); background: white; color: var(--luxeline-primary); cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                {% render 'icon', icon: 'plus' %}
+              </button>
+            </div>
+          </div>
+          
+          {%- comment -%} Add to Cart {%- endcomment -%}
+          <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+            <button 
+              type="submit"
+              name="add"
+              class="luxeline-button luxeline-button--primary luxeline-button--full"
+              data-add-to-cart
+              data-text-available="{{ 'products.product.add_to_cart' | t }}"
+              data-text-sold-out="{{ 'products.product.sold_out' | t }}"
+              {% unless product.available %}disabled{% endunless %}
+            >
+              {% if product.available %}
+                {{ 'products.product.add_to_cart' | t }}
+              {% else %}
+                {{ 'products.product.sold_out' | t }}
+              {% endif %}
+            </button>
+          </div>
+        {% endform %}
+        
+        {%- comment -%} Trust Badges {%- endcomment -%}
+        <div class="product-badges" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding: 1.5rem; background-color: var(--luxeline-bg); border-radius: var(--luxeline-radius);">
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;">
+            {% render 'icon', icon: 'truck' %}
+            <p style="font-size: 0.875rem; font-weight: 600; color: var(--luxeline-primary); margin: 0;">{{ 'products.product.free_shipping' | t }}</p>
+            <p style="font-size: 0.75rem; color: rgba(114, 81, 60, 0.6); margin: 0;">On orders over $200</p>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;">
+            {% render 'icon', icon: 'shield' %}
+            <p style="font-size: 0.875rem; font-weight: 600; color: var(--luxeline-primary); margin: 0;">{{ 'products.product.easy_returns' | t }}</p>
+            <p style="font-size: 0.75rem; color: rgba(114, 81, 60, 0.6); margin: 0;">30-day return policy</p>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.5rem;">
+            {% render 'icon', icon: 'check' %}
+            <p style="font-size: 0.875rem; font-weight: 600; color: var(--luxeline-primary); margin: 0;">{{ 'products.product.quality_guarantee' | t }}</p>
+            <p style="font-size: 0.75rem; color: rgba(114, 81, 60, 0.6); margin: 0;">100% premium hair</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {%- comment -%} Product Details Accordion {%- endcomment -%}
+    <div class="product-details" style="max-width: 800px; margin: 0 auto 4rem;">
+      {% if product.description != blank %}
+        <div class="accordion-item" data-accordion-item style="border-bottom: 1px solid var(--luxeline-border);">
+          <button type="button" data-accordion-trigger style="width: 100%; padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: center; background: none; border: none; cursor: pointer; text-align: left;">
+            <span class="luxury-heading" style="font-size: 1.25rem; color: var(--luxeline-primary);">{{ 'products.product.description' | t }}</span>
+            <span>{% render 'icon', icon: 'chevron-down' %}</span>
+          </button>
+          <div data-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+            <div style="padding-bottom: 1.5rem; color: rgba(114, 81, 60, 0.7); line-height: 1.6;">
+              {{ product.description }}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      
+      <div class="accordion-item" data-accordion-item style="border-bottom: 1px solid var(--luxeline-border);">
+        <button type="button" data-accordion-trigger style="width: 100%; padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: center; background: none; border: none; cursor: pointer; text-align: left;">
+          <span class="luxury-heading" style="font-size: 1.25rem; color: var(--luxeline-primary);">{{ 'products.product.shipping' | t }}</span>
+          <span>{% render 'icon', icon: 'chevron-down' %}</span>
+        </button>
+        <div data-accordion-content style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
+          <div style="padding-bottom: 1.5rem; color: rgba(114, 81, 60, 0.7); line-height: 1.6;">
+            <p>Free shipping on orders over $200. Standard delivery takes 3-5 business days.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {%- comment -%} Related Products {%- endcomment -%}
+    {% if section.settings.show_related_products %}
+      <div class="related-products">
+        <h2 class="luxury-heading" style="font-size: 2.5rem; text-align: center; margin-bottom: 2rem; color: var(--luxeline-black);">
+          {{ 'products.product.related_products' | t }}
+        </h2>
+        <div class="luxeline-grid luxeline-grid--4">
+          {% assign related_products = product.collections.first.products | where_not: "id", product.id | limit: 4 %}
+          {% for related_product in related_products %}
+            {% render 'product-card', product: related_product %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script type="application/json" data-product-json>
+  {{ product | json }}
+</script>
+
+<script src="{{ 'product.js' | asset_url }}" defer></script>
+
+<style>
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  
+  .product-badges {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.option-button:hover {
+  border-color: var(--luxeline-primary) !important;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+
+.color-swatch.active {
+  border-color: var(--luxeline-primary) !important;
+  transform: scale(1.1);
+}
+
+.product-gallery__thumbnail.active {
+  border-color: var(--luxeline-primary) !important;
+}
+
+.accordion-item.active [data-accordion-trigger] span:last-child {
+  transform: rotate(180deg);
+}
+</style>
+
+{% schema %}
+{
+  "name": "Product Information",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_related_products",
+      "label": "Show Related Products",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

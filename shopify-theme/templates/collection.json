@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "enable_price_filter": true,
+        "enable_tag_filter": true,
+        "products_per_page": 24
+      }
+    }
+  },
+  "order": ["main"]
+}
