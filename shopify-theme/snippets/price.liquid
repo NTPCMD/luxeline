@@ -1,0 +1,63 @@
+{% comment %}
+  Price Snippet
+  Usage: {% render 'price', product: product %}
+         {% render 'price', variant: variant %}
+{% endcomment %}
+
+{% if product %}
+  {% assign price = product.price %}
+  {% assign compare_at_price = product.compare_at_price %}
+  {% assign available = product.available %}
+{% elsif variant %}
+  {% assign price = variant.price %}
+  {% assign compare_at_price = variant.compare_at_price %}
+  {% assign available = variant.available %}
+{% endif %}
+
+<div class="price-wrapper">
+  {% if compare_at_price > price %}
+    <span class="price price--on-sale">
+      {{ price | money }}
+    </span>
+    <span class="price price--compare">
+      {{ compare_at_price | money }}
+    </span>
+    <span class="price__badge luxeline-badge" style="margin-left: 0.5rem; background-color: var(--luxeline-accent); color: var(--luxeline-black);">
+      {{ 'products.price.save' | t }} {{ compare_at_price | minus: price | times: 100 | divided_by: compare_at_price }}%
+    </span>
+  {% else %}
+    <span class="price">
+      {{ price | money }}
+    </span>
+  {% endif %}
+</div>
+
+<style>
+.price-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--luxeline-primary);
+}
+
+.price--on-sale {
+  color: var(--luxeline-primary);
+}
+
+.price--compare {
+  font-size: 1rem;
+  color: rgba(114, 81, 60, 0.4);
+  text-decoration: line-through;
+}
+
+.price__badge {
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+}
+</style>

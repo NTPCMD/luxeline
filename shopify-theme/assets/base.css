@@ -1,0 +1,321 @@
+/* LuxeLine Base Styles */
+
+/* CSS Variables */
+:root {
+  --luxeline-bg: #FDFBF6;
+  --luxeline-primary: #72513C;
+  --luxeline-accent: #E8B4BC;
+  --luxeline-black: #121212;
+  --luxeline-cream: #FDFBF6;
+  --luxeline-muted: #f5f1ea;
+  --luxeline-border: rgba(114, 81, 60, 0.15);
+  --luxeline-radius: 0.75rem;
+}
+
+/* Reset & Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+  background-color: var(--luxeline-bg);
+  color: var(--luxeline-primary);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--luxeline-black);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+.luxury-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--luxeline-accent);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Buttons */
+.luxeline-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--luxeline-radius);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.luxeline-button--primary {
+  background-color: var(--luxeline-primary);
+  color: #ffffff;
+}
+
+.luxeline-button--primary:hover {
+  background-color: #5d4230;
+}
+
+.luxeline-button--secondary {
+  background-color: var(--luxeline-black);
+  color: #ffffff;
+}
+
+.luxeline-button--secondary:hover {
+  background-color: rgba(18, 18, 18, 0.9);
+}
+
+.luxeline-button--outline {
+  background-color: transparent;
+  color: var(--luxeline-primary);
+  border: 2px solid var(--luxeline-primary);
+}
+
+.luxeline-button--outline:hover {
+  background-color: var(--luxeline-primary);
+  color: #ffffff;
+}
+
+.luxeline-button--full {
+  width: 100%;
+}
+
+.luxeline-button--large {
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+}
+
+.luxeline-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Form Inputs */
+.luxeline-input,
+.luxeline-select,
+.luxeline-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--luxeline-border);
+  border-radius: var(--luxeline-radius);
+  background-color: #ffffff;
+  color: var(--luxeline-primary);
+  transition: border-color 0.2s ease;
+}
+
+.luxeline-input:focus,
+.luxeline-select:focus,
+.luxeline-textarea:focus {
+  outline: none;
+  border-color: var(--luxeline-primary);
+}
+
+.luxeline-input::placeholder,
+.luxeline-textarea::placeholder {
+  color: rgba(114, 81, 60, 0.4);
+}
+
+.luxeline-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.luxeline-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--luxeline-primary);
+}
+
+/* Badge */
+.luxeline-badge {
+  display: inline-flex;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  background-color: var(--luxeline-accent);
+  color: var(--luxeline-black);
+}
+
+.luxeline-badge--primary {
+  background-color: var(--luxeline-primary);
+  color: #ffffff;
+}
+
+/* Card */
+.luxeline-card {
+  background-color: #ffffff;
+  border-radius: var(--luxeline-radius);
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Container & Layout */
+.luxeline-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.luxeline-section {
+  padding: 4rem 0;
+}
+
+.luxeline-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.luxeline-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.luxeline-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.luxeline-grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .luxeline-grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .luxeline-grid--2,
+  .luxeline-grid--3,
+  .luxeline-grid--4 {
+    grid-template-columns: 1fr;
+  }
+
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.gap-3 { gap: 1.5rem; }
+.gap-4 { gap: 2rem; }
+
+.hidden { display: none; }
+
+@media (max-width: 768px) {
+  .md\:hidden { display: none; }
+}
+
+@media (min-width: 769px) {
+  .md\:block { display: block; }
+  .md\:flex { display: flex; }
+}
+
+/* Accessibility */
+.skip-to-content-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  padding: 1rem;
+  background: var(--luxeline-primary);
+  color: #ffffff;
+  z-index: 100;
+}
+
+.skip-to-content-link:focus {
+  top: 0;
+}
+
+/* Loading State */
+.luxeline-loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--luxeline-accent);
+  color: var(--luxeline-black);
+}
