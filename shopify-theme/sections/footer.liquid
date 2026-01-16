@@ -1,0 +1,104 @@
+<footer class="site-footer">
+  <div class="luxeline-container">
+    <div class="footer-grid">
+      <div>
+        <div class="header-logo">
+          {% if settings.logo != blank %}
+            <img src="{{ settings.logo | image_url: width: 220 }}" alt="{{ shop.name }}" loading="lazy">
+          {% else %}
+            <span>LUXE</span><span>LINÈ</span>
+          {% endif %}
+        </div>
+        <p>{{ section.settings.description }}</p>
+        <div class="header-icons">
+          {% if section.settings.instagram_url != blank %}
+            <a href="{{ section.settings.instagram_url }}" aria-label="Instagram">📸</a>
+          {% endif %}
+          {% if section.settings.tiktok_url != blank %}
+            <a href="{{ section.settings.tiktok_url }}" aria-label="TikTok">🎵</a>
+          {% endif %}
+          {% if section.settings.email != blank %}
+            <a href="mailto:{{ section.settings.email }}" aria-label="Email">✉️</a>
+          {% endif %}
+        </div>
+      </div>
+      {% for block in section.blocks %}
+        <div class="footer-links" {{ block.shopify_attributes }}>
+          <h4>{{ block.settings.title }}</h4>
+          {% if block.settings.menu != blank %}
+            <ul>
+              {% for link in linklists[block.settings.menu].links %}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="footer-bottom">
+      <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+      <div>
+        {% if section.settings.legal_menu != blank %}
+          {% for link in linklists[section.settings.legal_menu].links %}
+            <a href="{{ link.url }}">{{ link.title }}</a>{% unless forloop.last %} • {% endunless %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Brand description",
+      "default": "Luxury wigs designed for confidence, comfort, and flawless beauty. Elevate your look with premium quality and natural elegance."
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Contact email",
+      "default": "hello@luxeline.com"
+    },
+    {
+      "type": "link_list",
+      "id": "legal_menu",
+      "label": "Legal menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Quick links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3
+}
+{% endschema %}

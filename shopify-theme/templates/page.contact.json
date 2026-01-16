@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "contact": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Contact Us",
+        "subheading": "Tell us how we can help and we'll respond within 24 hours."
+      }
+    }
+  },
+  "order": ["contact"]
+}

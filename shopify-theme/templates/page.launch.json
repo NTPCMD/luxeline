@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "launch": {
+      "type": "launch-countdown",
+      "settings": {
+        "launch_date": "2026-02-14T00:00:00+08:00",
+        "heading": "LuxeLine is launching soon",
+        "subheading": "Luxury wigs designed for confidence, comfort, and flawless beauty.",
+        "form_type": "customer"
+      }
+    }
+  },
+  "order": ["launch"]
+}

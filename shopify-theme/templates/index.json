@@ -1,0 +1,189 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "trust-1": {
+          "type": "trust",
+          "settings": {
+            "title": "4.9/5 (2,400+ reviews)",
+            "text": "Top-rated luxury wigs"
+          }
+        },
+        "trust-2": {
+          "type": "trust",
+          "settings": {
+            "title": "100% Human Hair",
+            "text": "Glueless comfort designs"
+          }
+        }
+      },
+      "block_order": ["trust-1", "trust-2"],
+      "settings": {
+        "badge_text": "New Collection",
+        "heading": "Elevate Your\nNatural Beauty",
+        "subheading": "Premium human hair wigs designed for confidence, comfort, and flawless beauty. Experience luxury that looks and feels natural."
+      }
+    },
+    "features": {
+      "type": "features-grid",
+      "blocks": {
+        "feature-1": {
+          "type": "feature",
+          "settings": {
+            "title": "Natural Hairline",
+            "text": "Flawless blend with your natural hair for an undetectable look"
+          }
+        },
+        "feature-2": {
+          "type": "feature",
+          "settings": {
+            "title": "Glueless Comfort",
+            "text": "Easy application, beginner-friendly, no adhesive needed"
+          }
+        },
+        "feature-3": {
+          "type": "feature",
+          "settings": {
+            "title": "Premium Quality",
+            "text": "100% human hair, highest quality, ethically sourced"
+          }
+        },
+        "feature-4": {
+          "type": "feature",
+          "settings": {
+            "title": "Fast Shipping",
+            "text": "Worldwide delivery in 3-5 days with premium packaging"
+          }
+        }
+      },
+      "block_order": ["feature-1", "feature-2", "feature-3", "feature-4"],
+      "settings": {
+        "heading": "Why Choose LuxeLine",
+        "subheading": "Experience the perfect blend of luxury, comfort, and natural beauty"
+      }
+    },
+    "collections": {
+      "type": "collection-grid",
+      "blocks": {
+        "collection-1": {
+          "type": "collection",
+          "settings": {
+            "title": "Glueless Wigs",
+            "subtitle": "24 Styles"
+          }
+        },
+        "collection-2": {
+          "type": "collection",
+          "settings": {
+            "title": "Lace Front",
+            "subtitle": "18 Styles"
+          }
+        },
+        "collection-3": {
+          "type": "collection",
+          "settings": {
+            "title": "Colored Wigs",
+            "subtitle": "32 Styles"
+          }
+        }
+      },
+      "block_order": ["collection-1", "collection-2", "collection-3"],
+      "settings": {
+        "heading": "Shop by Style",
+        "subheading": "Discover our curated collections designed for every occasion"
+      }
+    },
+    "best-sellers": {
+      "type": "best-sellers",
+      "blocks": {
+        "product-1": {
+          "type": "product",
+          "settings": {
+            "title": "Luxury Straight Wig",
+            "price": "$299",
+            "badge": "Best Seller"
+          }
+        },
+        "product-2": {
+          "type": "product",
+          "settings": {
+            "title": "Body Wave Lace",
+            "price": "$329",
+            "badge": "Top Rated"
+          }
+        },
+        "product-3": {
+          "type": "product",
+          "settings": {
+            "title": "Glueless Bob",
+            "price": "$249",
+            "badge": "Best Seller"
+          }
+        },
+        "product-4": {
+          "type": "product",
+          "settings": {
+            "title": "HD Lace Curly",
+            "price": "$359",
+            "badge": "Limited"
+          }
+        }
+      },
+      "block_order": ["product-1", "product-2", "product-3", "product-4"],
+      "settings": {
+        "heading": "Best Sellers",
+        "subheading": "Our most loved styles",
+        "cta_label": "View All"
+      }
+    },
+    "quiz": {
+      "type": "quiz-cta",
+      "settings": {
+        "heading": "Find Your Perfect Match",
+        "subheading": "Take our quick 2-minute quiz to discover the perfect wig for your style, face shape, and lifestyle needs.",
+        "button_label": "Start Quiz"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonial-1": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Sarah M.",
+            "review": "Absolutely stunning quality! The natural hairline is incredible and it's so comfortable to wear all day. Worth every penny!"
+          }
+        },
+        "testimonial-2": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Jessica T.",
+            "review": "I was nervous to try my first wig, but LuxeLine made it so easy. The glueless application is genius and the hair is gorgeous!"
+          }
+        },
+        "testimonial-3": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Michelle R.",
+            "review": "Best investment ever! The quality is unmatched and I get compliments every single day. Feels just like my natural hair."
+          }
+        }
+      },
+      "block_order": ["testimonial-1", "testimonial-2", "testimonial-3"],
+      "settings": {
+        "heading": "Loved by Thousands",
+        "subheading": "Based on 2,400+ verified reviews"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Join the LuxeLine Family",
+        "subheading": "Get exclusive access to new collections, styling tips, and special offers",
+        "button_label": "Subscribe"
+      }
+    }
+  },
+  "order": ["hero", "features", "collections", "best-sellers", "quiz", "testimonials", "newsletter"]
+}

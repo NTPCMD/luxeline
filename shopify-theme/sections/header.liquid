@@ -1,0 +1,36 @@
+<header class="site-header">
+  <div class="luxeline-container header-inner">
+    <a href="{{ routes.root_url }}" class="header-logo">
+      {% if settings.logo != blank %}
+        <img src="{{ settings.logo | image_url: width: 240 }}" alt="{{ shop.name }}" loading="lazy">
+      {% else %}
+        <span>LUXE</span><span>LINÈ</span>
+      {% endif %}
+    </a>
+    {% if section.settings.menu != blank %}
+      <nav class="header-nav">
+        {% for link in linklists[section.settings.menu].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      </nav>
+    {% endif %}
+    <div class="header-icons">
+      <a href="{{ routes.search_url }}" aria-label="Search">🔍</a>
+      <a href="{{ routes.account_url }}" aria-label="Account">👤</a>
+      <a href="{{ routes.cart_url }}" aria-label="Cart">🛍️</a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu"
+    }
+  ]
+}
+{% endschema %}

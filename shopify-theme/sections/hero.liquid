@@ -1,0 +1,110 @@
+<section class="hero-section">
+  <div class="luxeline-container hero-grid">
+    <div>
+      {% if section.settings.badge_text != blank %}
+        <span class="luxeline-pill">{{ section.settings.badge_text }}</span>
+      {% endif %}
+      <h1 class="luxeline-heading" style="font-size: clamp(2.6rem, 5vw, 4.5rem);">
+        {{ section.settings.heading }}
+      </h1>
+      <p class="hero-text">{{ section.settings.subheading }}</p>
+      <div style="display:flex; flex-wrap:wrap; gap:16px; margin-top:32px;">
+        {% if section.settings.primary_button_label != blank %}
+          <a class="luxeline-button primary" href="{{ section.settings.primary_button_link }}">{{ section.settings.primary_button_label }}</a>
+        {% endif %}
+        {% if section.settings.secondary_button_label != blank %}
+          <a class="luxeline-button outline" href="{{ section.settings.secondary_button_link }}">{{ section.settings.secondary_button_label }}</a>
+        {% endif %}
+      </div>
+      <div class="hero-trust">
+        {% for block in section.blocks %}
+          <div {{ block.shopify_attributes }}>
+            <strong>{{ block.settings.title }}</strong><br>
+            <span>{{ block.settings.text }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div>
+      {% if section.settings.hero_image != blank %}
+        <div class="hero-image-wrapper">
+          <img src="{{ section.settings.hero_image | image_url: width: 900 }}" alt="{{ section.settings.hero_image.alt | escape }}">
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "New Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Elevate Your\nNatural Beauty"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Premium human hair wigs designed for confidence, comfort, and flawless beauty. Experience luxury that looks and feels natural."
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary button label",
+      "default": "Shop Collection"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary button label",
+      "default": "Take Quiz"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust",
+      "name": "Trust indicator",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "4.9/5 (2,400+ reviews)"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "100% Human Hair"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 2
+}
+{% endschema %}

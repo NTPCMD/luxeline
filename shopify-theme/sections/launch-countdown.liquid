@@ -1,0 +1,121 @@
+<section
+  class="launch-wrapper"
+  style="{% if section.settings.background_image != blank %}background-image: url({{ section.settings.background_image | image_url: width: 2000 }});{% else %}background: {{ section.settings.background_gradient }};{% endif %}"
+  data-launch-date="{{ section.settings.launch_date }}"
+>
+  <div class="launch-overlay">
+    <div class="luxeline-container">
+      <div class="launch-content">
+        <div class="header-logo">
+          {% if settings.logo != blank %}
+            <img src="{{ settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" loading="lazy">
+          {% else %}
+            <span>LUXE</span><span>LINÈ</span>
+          {% endif %}
+        </div>
+        <h1 class="luxeline-heading" style="font-size: clamp(2.6rem, 5vw, 4.5rem);">{{ section.settings.heading }}</h1>
+        <p>{{ section.settings.subheading }}</p>
+        <div class="countdown-grid">
+          <div class="countdown-unit">
+            <span data-countdown="days">00</span>
+            <div class="countdown-label">Days</div>
+          </div>
+          <div class="countdown-unit">
+            <span data-countdown="hours">00</span>
+            <div class="countdown-label">Hours</div>
+          </div>
+          <div class="countdown-unit">
+            <span data-countdown="minutes">00</span>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-unit">
+            <span data-countdown="seconds">00</span>
+            <div class="countdown-label">Seconds</div>
+          </div>
+        </div>
+        <p class="launch-placeholder" style="display:none; font-weight:600;">Coming Soon</p>
+        <div style="margin-top:32px;">
+          {% if section.settings.form_type == 'customer' %}
+            {% form 'customer' %}
+              <input type="hidden" name="contact[tags]" value="launch-waitlist">
+              <input type="email" name="contact[email]" placeholder="{{ section.settings.email_placeholder }}" required>
+              <button type="submit" class="luxeline-button primary">{{ section.settings.button_label }}</button>
+            {% endform %}
+          {% else %}
+            {% form 'contact' %}
+              <input type="text" name="contact[name]" placeholder="Name" required>
+              <input type="email" name="contact[email]" placeholder="{{ section.settings.email_placeholder }}" required>
+              <button type="submit" class="luxeline-button primary">{{ section.settings.button_label }}</button>
+            {% endform %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Launch countdown",
+  "settings": [
+    {
+      "type": "text",
+      "id": "launch_date",
+      "label": "Launch date (ISO format)",
+      "default": "2026-02-14T00:00:00+08:00",
+      "info": "Example: 2026-06-01T00:00:00+08:00"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "LuxeLine is launching soon"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Luxury wigs designed for confidence, comfort, and flawless beauty."
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "background_gradient",
+      "label": "Fallback background gradient",
+      "default": "linear-gradient(135deg, #FDFBF6 0%, #f5ebe5 50%, #fdf0ed 100%)"
+    },
+    {
+      "type": "select",
+      "id": "form_type",
+      "label": "Email capture form",
+      "options": [
+        {
+          "value": "customer",
+          "label": "Customer (newsletter)"
+        },
+        {
+          "value": "contact",
+          "label": "Contact form"
+        }
+      ],
+      "default": "customer"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Join the Waitlist"
+    }
+  ]
+}
+{% endschema %}

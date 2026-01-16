@@ -1,0 +1,43 @@
+<section class="section-block">
+  <div class="luxeline-container" style="text-align:center;">
+    <h2 class="luxeline-heading" style="font-size: clamp(1.8rem, 3vw, 2.6rem);">{{ section.settings.heading }}</h2>
+    <p style="max-width:640px; margin:0 auto 32px;">{{ section.settings.subheading }}</p>
+    {% form 'customer', class: 'newsletter-form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input type="email" name="contact[email]" placeholder="{{ section.settings.placeholder }}" required>
+      <button type="submit" class="luxeline-button primary">{{ section.settings.button_label }}</button>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join the LuxeLine Family"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Get exclusive access to new collections, styling tips, and special offers"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    }
+  ]
+}
+{% endschema %}
