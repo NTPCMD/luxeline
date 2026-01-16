@@ -1,52 +1,86 @@
-[
-  {
-    "name": "Brand",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Logo"
-      },
-      {
-        "type": "color",
-        "id": "background_color",
-        "label": "Background color",
-        "default": "#FDFBF6"
-      },
-      {
-        "type": "color",
-        "id": "text_color",
-        "label": "Text color",
-        "default": "#72513C"
-      },
-      {
-        "type": "color",
-        "id": "heading_color",
-        "label": "Heading color",
-        "default": "#121212"
-      },
-      {
-        "type": "color",
-        "id": "primary_color",
-        "label": "Primary button color",
-        "default": "#72513C"
-      },
-      {
-        "type": "color",
-        "id": "accent_color",
-        "label": "Accent color",
-        "default": "#E8B4BC"
-      },
-      {
-        "type": "range",
-        "id": "base_font_size",
-        "label": "Base font size",
-        "min": 14,
-        "max": 20,
-        "step": 1,
-        "unit": "px",
-        "default": 16
-      }
-    ]
-  }
+[  
+  {  
+    "name": "General Settings",  
+    "settings": [  
+      {  
+        "type": "header",  
+        "content": "General Settings"  
+      },  
+      {  
+        "type": "text",  
+        "id": "store_name",  
+        "label": "Store Name",  
+        "default": "My Online Store"  
+      },  
+      {  
+        "type": "textarea",  
+        "id": "store_description",  
+        "label": "Store Description",  
+        "default": "Welcome to our store!"  
+      }  
+    ]  
+  },  
+  {  
+    "name": "Colors",  
+    "settings": [  
+      {  
+        "type": "header",  
+        "content": "Color Settings"  
+      },  
+      {  
+        "type": "color",  
+        "id": "primary_color",  
+        "label": "Primary Color",  
+        "default": "#ff0000"  
+      },  
+      {  
+        "type": "color",  
+        "id": "secondary_color",  
+        "label": "Secondary Color",  
+        "default": "#00ff00"  
+      }  
+    ]  
+  },  
+  {  
+    "name": "Typography",  
+    "settings": [  
+      {  
+        "type": "header",  
+        "content": "Typography Settings"  
+      },  
+      {  
+        "type": "font",  
+        "id": "body_font",  
+        "label": "Body Font",  
+        "default": "Arial"  
+      },  
+      {  
+        "type": "font",  
+        "id": "heading_font",  
+        "label": "Heading Font",  
+        "default": "Verdana"  
+      }  
+    ]  
+  },  
+  {  
+    "name": "Social Media",  
+    "settings": [  
+      {  
+        "type": "header",  
+        "content": "Social Media Links"  
+      },  
+      {  
+        "type": "url",  
+        "id": "facebook_link",  
+        "label": "Facebook Link",  
+        "default": "https://facebook.com"  
+      },  
+      {  
+        "type": "url",  
+        "id": "twitter_link",  
+        "label": "Twitter Link",  
+        "default": "https://twitter.com"  
+      }  
+    ]  
+  }  
 ]
